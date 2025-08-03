@@ -1,18 +1,16 @@
-import * as React from "react"
-import type { HeadFC, PageProps } from "gatsby"
+import * as React from 'react'
+import type { HeadFC, PageProps } from 'gatsby'
 
 const pageStyles = {
-  color: "#232129",
+  color: '#232129',
   padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
+  fontFamily: '-apple-system, Roboto, sans-serif, serif',
 }
+
 const headingStyles = {
   marginTop: 0,
   marginBottom: 64,
   maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
 }
 
 const listStyles = {
@@ -28,45 +26,40 @@ const listItemStyles = {
 }
 
 const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
+  color: '#8954A8',
+  fontWeight: 'bold',
   fontSize: 16,
-  verticalAlign: "5%",
+  verticalAlign: '5%',
 }
 
 const links = [
   {
-    text: "Stanovanje",
-    url: "/living",
+    text: 'Stanovanje',
+    url: '/living',
   },
   {
-    text: "Arhitektura",
-    url: "/arhitecture",
+    text: 'Arhitektura',
+    url: '/arhitecture',
   },
   {
-    text: "Dizajn",
-    url: "/design",
+    text: 'Dizajn',
+    url: '/design',
   },
   {
-    text: "Trend",
-    url: "/trend",
-  }
+    text: 'Trend',
+    url: '/trend',
+  },
 ]
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
     <main style={pageStyles}>
-      <h1 style={headingStyles}>
-        BRID
-      </h1>
+      <h1 style={headingStyles}>BRID</h1>
       <ul style={listStyles}>
-        {links.map(link => (
+        {links.map((link) => (
           <li key={link.url} style={{ ...listItemStyles }}>
             <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}`}
-              >
+              <a style={linkStyle} href={`${link.url}`}>
                 {link.text}
               </a>
             </span>
