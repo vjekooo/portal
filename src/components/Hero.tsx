@@ -3,15 +3,16 @@ import { useState } from 'react'
 import { Stack } from './Stack'
 
 interface HeroActionProps {
-  storeId: string
+  text: string
+  url: string
 }
 
-const HeroAction = ({ storeId }: HeroActionProps) => (
+const HeroAction = ({ text, url }: HeroActionProps) => (
   <a
     class="text-xl inline-block underline leading-relaxed hover:text-black hover:border-black"
-    href={`/store/${storeId}`}
+    href={`${url}`}
   >
-    go to
+    {text}
   </a>
 )
 
@@ -20,14 +21,14 @@ interface Props {
   interval?: number
 }
 
-export const Hero = ({ items, interval = 1000 }: Props) => {
+export const Hero = ({ items, interval = 4000 }: Props) => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const slideInterval = setInterval(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length)
   }, interval)
 
-  const currentStore = items[currentIndex]
+  const currentItem = items[currentIndex]
 
   return (
     <section
@@ -52,8 +53,8 @@ export const Hero = ({ items, interval = 1000 }: Props) => {
 
       <div class="flex flex-col justify-center items-start p-6 tracking-wide bg-white opacity-70 z-10 relative">
         <Stack>
-          <h1 class="text-black h1">{currentStore.name}</h1>
-          <HeroAction storeId={currentStore.id} />
+          <h1 class="text-black h1">{currentItem.name}</h1>
+          <HeroAction storeId={currentItem.url} text={currentItem.text} />
         </Stack>
       </div>
 
