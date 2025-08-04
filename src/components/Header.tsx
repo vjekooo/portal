@@ -1,8 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 
 export const Header = () => {
   const [presentMenu, setPresentMenu] = useState(false)
+
+  useEffect(() => {
+    if (presentMenu) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [presentMenu])
 
   return (
     <nav className="flex flex-wrap items-center justify-between mt-0 px-6 py-3">
@@ -32,7 +44,20 @@ export const Header = () => {
       </div>
 
       {presentMenu && (
-        <div className="absolute top-[50px] left-0 w-full bg-white shadow-lg p-4 md:hidden h-[95vh] transition-all duration-300 ease-in-out z-20">
+        <div className="absolute top-0 left-0 w-[90vw] bg-white shadow-lg p-4 md:hidden h-[100vh] transition-all duration-300 ease-in-out z-50">
+          <div className="flex justify-end">
+            <svg
+              className="fill-current text-gray-900 cursor-pointer"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              onClick={() => setPresentMenu(false)}
+            >
+              <title>close</title>
+              <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+            </svg>
+          </div>
           <ul className="flex flex-col space-y-2">
             <li>
               <a href="/" className="text-gray-800 hover:text-gray-600">
