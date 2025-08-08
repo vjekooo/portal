@@ -34,7 +34,7 @@ export const Header = () => {
         </svg>
       </div>
 
-      <div class="order-1 md:order-2">
+      <div className="order-1 md:order-2">
         <a
           className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-3xl "
           href="#"

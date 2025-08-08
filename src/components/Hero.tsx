@@ -9,7 +9,7 @@ interface HeroActionProps {
 
 const HeroAction = ({ text, url }: HeroActionProps) => (
   <a
-    class="text-xl inline-block underline leading-relaxed hover:text-black hover:border-black"
+    className="text-xl inline-block underline leading-relaxed hover:text-black hover:border-black"
     href={`${url}`}
   >
     {text}
@@ -32,7 +32,7 @@ export const Hero = ({ items, interval = 4000 }: Props) => {
 
   return (
     <section
-      class="w-full mx-auto bg-nordic-gray-light flex p-12 md:pt-0 items-end bg-cover bg-right relative overflow-hidden"
+      className="w-full mx-auto bg-nordic-gray-light flex p-12 md:pt-0 items-end bg-cover bg-right relative overflow-hidden"
       style={{
         maxWidth: '1600px',
         height: '32rem',
@@ -40,7 +40,7 @@ export const Hero = ({ items, interval = 4000 }: Props) => {
     >
       {items.map((item, index) => (
         <div
-          class={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+          className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
             index === currentIndex ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
@@ -51,20 +51,20 @@ export const Hero = ({ items, interval = 4000 }: Props) => {
         ></div>
       ))}
 
-      <div class="flex flex-col justify-center items-start p-6 tracking-wide bg-white opacity-70 z-10 relative">
+      <div className="flex flex-col justify-center items-start p-6 tracking-wide bg-white opacity-70 z-10 relative">
         <Stack>
-          <h1 class="text-black h1">{currentItem.name}</h1>
-          <HeroAction storeId={currentItem.url} text={currentItem.text} />
+          <h1 className="text-black h1">{currentItem.name}</h1>
+          <HeroAction text={currentItem.text} url="" />
         </Stack>
       </div>
 
-      <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
         {items.map((_, index) => (
           <button
-            class={`w-3 h-3 rounded-full ${
+            className={`w-3 h-3 rounded-full ${
               currentIndex === index ? 'bg-black' : 'bg-gray-400'
             }`}
-            onclick={() => setCurrentIndex(index)}
+            onClick={() => setCurrentIndex(index)}
             aria-label={`Go to slide ${index + 1}`}
           ></button>
         ))}
