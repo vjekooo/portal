@@ -1,13 +1,14 @@
 import React from 'react'
 
-interface Article {
+export interface CardArticle {
   title: string
   date: string
+  url: string
   image: string
 }
 
 interface Props {
-  article: Article
+  article: CardArticle
 }
 
 export const Card = ({ article }: Props) => {

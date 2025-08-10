@@ -7,6 +7,7 @@ import { Card } from '../components/Card'
 interface PageData {
   allContentfulPage: {
     nodes: {
+      recentArticles: any
       slug: string
       title: string
       description?: string
@@ -106,8 +107,17 @@ export default function HomePage({ data }: PageProps<PageData>) {
                   className="w-full flex-grow sm:flex sm:items-center sm:w-auto"
                   id="store-nav-content"
                 >
-                  {heroArticles?.map((card) => (
-                    <Card article={card} />
+                  {page?.recentArticles?.map((article: any) => (
+                    <Card
+                      article={{
+                        title: article.title,
+                        url: article.slug,
+                        date: article.date,
+                        image: article.image?.file?.url?.startsWith('//')
+                          ? `https:${article.image.file.url}`
+                          : article.image?.file?.url || '',
+                      }}
+                    />
                   ))}
                 </div>
               </div>
@@ -203,6 +213,15 @@ export const query = graphql`
       nodes {
         slug
         title
+        recentArticles(limit: 3) {
+          slug
+          title
+          image {
+            file {
+              url
+            }
+          }
+        }
       }
     }
     featuredArticles: allContentfulArticle(limit: 3, sort: { date: DESC }) {

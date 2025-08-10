@@ -26,6 +26,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     throw pagesResult.errors
   }
 
+  // @ts-ignore
   const pages = pagesResult.data?.allContentfulPage?.nodes || []
 
   pages.forEach((page: any) => {
@@ -52,4 +53,55 @@ export const createPages: GatsbyNode['createPages'] = async ({
       })
     }
   })
+}
+
+// @ts-ignore
+exports.createResolvers = ({ createResolvers }) => {
+  const resolvers = {
+    ContentfulPage: {
+      recentArticles: {
+        type: ['ContentfulArticle'],
+        args: {
+          limit: {
+            type: 'Int',
+            defaultValue: 3,
+          },
+        },
+        resolve: async (
+          source: { articles___NODE: any },
+          args: { limit: any },
+          context: {
+            nodeModel: {
+              findAll: (arg0: {
+                query: {
+                  filter: { id: { in: any } }
+                  sort: { fields: string[]; order: string[] }
+                  limit: any
+                }
+                type: string
+              }) => PromiseLike<{ entries: any }> | { entries: any }
+            }
+          }
+        ) => {
+          const { entries } = await context.nodeModel.findAll({
+            query: {
+              filter: {
+                id: { in: source.articles___NODE || [] },
+              },
+              sort: {
+                fields: ['date'],
+                order: ['DESC'],
+              },
+              limit: args.limit,
+            },
+            type: 'ContentfulArticle',
+          })
+
+          return Array.from(entries)
+        },
+      },
+    },
+  }
+
+  createResolvers(resolvers)
 }
