@@ -54,7 +54,7 @@ export const Hero = ({ items, interval = 4000 }: Props) => {
       <div className="flex flex-col justify-center items-start p-6 tracking-wide bg-white opacity-70 z-10 relative">
         <Stack>
           <h1 className="text-black h1">{currentItem.name}</h1>
-          <HeroAction text={currentItem.text} url="/architecture" />
+          <HeroAction text={currentItem.title} url={currentItem.url} />
         </Stack>
       </div>
 

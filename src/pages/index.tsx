@@ -1,59 +1,41 @@
 import * as React from 'react'
-import type { HeadFC, PageProps } from 'gatsby'
+import { graphql, Link, type HeadFC, type PageProps } from 'gatsby'
 import { Hero } from '../components/Hero'
 import { Header } from '../components/Header'
 import { Card } from '../components/Card'
 
-const links = [
-  {
-    text: 'Stanovanje',
-    url: '/living',
-  },
-  {
-    text: 'Arhitektura',
-    url: '/arhitecture',
-  },
-  {
-    text: 'Dizajn',
-    url: '/design',
-  },
-  {
-    text: 'Trend',
-    url: '/trend',
-  },
-]
+interface PageData {
+  allContentfulPage: {
+    nodes: {
+      slug: string
+      title: string
+      description?: string
+    }[]
+  }
+  featuredArticles: {
+    nodes: {
+      image: any
+      slug: string
+      title: string
+      date: string
+      excerpt?: string
+    }[]
+  }
+}
 
-const heroItems = [
-  {
-    text: 'Stanovanje',
-    url: '/living',
-    image:
-      'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjM0MTM2fQ&auto=format&fit=crop&w=1600&q=80',
-  },
-  {
-    text: 'Arhitektura',
-    url: '/arhitecture',
-    image:
-      'https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80',
-  },
-]
+export default function HomePage({ data }: PageProps<PageData>) {
+  const pages = data.allContentfulPage.nodes
+  const featuredArticles = data.featuredArticles.nodes
 
-const cards = [
-  {
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    image:
-      'https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=1992&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    image:
-      'https://images.unsplash.com/photo-1460574283810-2aab119d8511?q=80&w=2063&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-]
+  const heroArticles = featuredArticles.map((article) => ({
+    title: article.title,
+    url: article.slug,
+    date: article.date,
+    image: article.image?.file?.url?.startsWith('//')
+      ? `https:${article.image.file.url}`
+      : article.image?.file?.url || '',
+  }))
 
-const IndexPage: React.FC<PageProps> = () => {
   return (
     <main>
       <Header />
@@ -92,10 +74,10 @@ const IndexPage: React.FC<PageProps> = () => {
         className="carousel relative container mx-auto"
         style={{ maxWidth: '1600px' }}
       >
-        <Hero items={heroItems} />
+        <Hero items={heroArticles} />
       </div>
 
-      {/*Alternatively if you want to just have a single hero*/}
+      {/*single hero*/}
 
       {/*<section class="w-full mx-auto bg-nordic-gray-light flex pt-12 md:pt-0 md:items-center bg-cover bg-right" style="max-width:1600px; height: 32rem; background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');">*/}
 
@@ -114,61 +96,35 @@ const IndexPage: React.FC<PageProps> = () => {
       <section className="bg-white py-8">
         <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
           <nav id="store" className="w-full z-30 top-0 px-6 py-1">
-            <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
-              <a
-                className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl "
-                href="#"
-              >
-                Kategorija
-              </a>
-
-              <div className="flex items-center" id="store-nav-content">
-                <a
-                  className="pl-3 inline-block no-underline hover:text-black"
-                  href="#"
+            {pages.map((page) => (
+              <div className="w-full flex flex-col">
+                <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
+                  <div className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl ">
+                    {page.title}
+                  </div>
+                </div>
+                <div
+                  className="w-full flex-grow sm:flex sm:items-center sm:w-auto"
+                  id="store-nav-content"
                 >
-                  <svg
-                    className="fill-current hover:text-black"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M7 11H17V13H7zM4 7H20V9H4zM10 15H14V17H10z" />
-                  </svg>
-                </a>
-
-                <a
-                  className="pl-3 inline-block no-underline hover:text-black"
-                  href="#"
-                >
-                  <svg
-                    className="fill-current hover:text-black"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z" />
-                  </svg>
-                </a>
+                  {heroArticles?.map((card) => (
+                    <Card article={card} />
+                  ))}
+                </div>
               </div>
-            </div>
+            ))}
           </nav>
-          {cards?.map((card) => (
-            <Card article={card} />
-          ))}
         </div>
       </section>
 
       <section className="bg-white py-8">
         <div className="container py-8 px-6 mx-auto">
-          <a
-            className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl mb-8"
-            href="#"
-          >
-            About
-          </a>
+          {/*<a*/}
+          {/*  className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl mb-8"*/}
+          {/*  href="#"*/}
+          {/*>*/}
+          {/*  About*/}
+          {/*</a>*/}
 
           <p className="mb-8">
             Lorem ipsum dolor sit amet, consectetur <a href="#">random link</a>{' '}
@@ -240,6 +196,30 @@ const IndexPage: React.FC<PageProps> = () => {
   )
 }
 
-export default IndexPage
-
 export const Head: HeadFC = () => <title>Home Page</title>
+
+export const query = graphql`
+  query GetLandingPageData {
+    allContentfulPage {
+      nodes {
+        slug
+        title
+      }
+    }
+    featuredArticles: allContentfulArticle(limit: 3, sort: { date: DESC }) {
+      nodes {
+        slug
+        title
+        image {
+          file {
+            url
+          }
+        }
+        date
+        excerpt: text {
+          raw
+        }
+      }
+    }
+  }
+`

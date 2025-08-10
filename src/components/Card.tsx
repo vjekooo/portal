@@ -2,7 +2,7 @@ import React from 'react'
 
 interface Article {
   title: string
-  text: string
+  date: string
   image: string
 }
 
