@@ -13,7 +13,7 @@ interface Props {
 
 export const Card = ({ article }: Props) => {
   return (
-    <div className="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <div className="w-full md:w-1/3 xl:w-1/4 flex flex-col">
       <a href="#">
         <img className="hover:grow hover:shadow-lg" src={article.image} />
         <div className="pt-3 flex items-center justify-between">
