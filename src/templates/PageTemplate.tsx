@@ -1,11 +1,15 @@
 import React from 'react'
 import { PageProps, graphql, Link } from 'gatsby'
+import { Card } from '../components/Card'
+import { Head } from '../pages'
+import { Header } from '../components/Header'
 
 interface PageData {
   contentfulPage: {
     title: string
     slug: string
     articles: {
+      image: any
       slug: string
       title: string
       date: string
@@ -21,20 +25,29 @@ const PageTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
   }
 
   return (
-    <div>
-      <h1>{contentfulPage.title}</h1>
+    <section className="bg-white py-8">
+      <Header />
+      <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+        <nav id="store" className="w-full z-30 top-0 px-6 py-1">
+          <h1>{contentfulPage.title}</h1>
+        </nav>
 
-      <div>
-        {contentfulPage.articles?.map((article) => (
-          <div key={article.slug}>
-            <Link to={`/${contentfulPage.slug}/${article.slug}`}>
-              <h3>{article.title}</h3>
-              <p>{article.date}</p>
-            </Link>
-          </div>
-        ))}
+        <div className="grid">
+          {contentfulPage.articles?.map((article) => (
+            <Card
+              article={{
+                title: article.title,
+                url: article.slug,
+                date: article.date,
+                image: article.image?.file?.url?.startsWith('//')
+                  ? `https:${article.image.file.url}`
+                  : article.image?.file?.url || '',
+              }}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 
@@ -47,6 +60,11 @@ export const query = graphql`
         slug
         title
         date
+        image {
+          file {
+            url
+          }
+        }
       }
     }
   }

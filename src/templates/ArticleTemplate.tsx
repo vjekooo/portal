@@ -54,6 +54,7 @@ const ArticleTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
       <h1>{contentfulArticle.title}</h1>
       <p>{contentfulArticle.date}</p>
       {image && <GatsbyImage image={image} alt={contentfulArticle.title} />}
+      {/*@ts-ignore*/}
       <div>{renderRichText(contentfulArticle.text, options)}</div>
     </div>
   )
