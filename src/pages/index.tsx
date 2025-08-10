@@ -100,7 +100,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
               <div className="w-full flex flex-col">
                 <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
                   <div className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl ">
-                    {page.title}
+                    <a href={page.slug}>{page.title}</a>
                   </div>
                 </div>
                 <div
