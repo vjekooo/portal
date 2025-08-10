@@ -1,7 +1,6 @@
 import React from 'react'
-import { PageProps, graphql, Link } from 'gatsby'
+import { PageProps, graphql, Link, HeadFC } from 'gatsby'
 import { Card } from '../components/Card'
-import { Head } from '../pages'
 import { Header } from '../components/Header'
 
 interface PageData {
@@ -28,8 +27,10 @@ const PageTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
     <section className="bg-white">
       <Header />
       <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
-        <nav id="store" className="w-full z-30 top-0 px-6 py-1">
-          <h1>{contentfulPage.title}</h1>
+        <nav id="store" className="w-full z-30 top-0 pb-8">
+          <h1 className="text-2xl font-bold uppercase">
+            {contentfulPage.title}
+          </h1>
         </nav>
 
         <div className="grid">
@@ -50,6 +51,11 @@ const PageTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
       </div>
     </section>
   )
+}
+
+export const Head: HeadFC<PageData> = ({ data }) => {
+  const pageTitle = data?.contentfulPage?.title || 'Page'
+  return <title>BRIID {pageTitle}</title>
 }
 
 export const query = graphql`

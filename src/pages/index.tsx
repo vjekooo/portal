@@ -75,7 +75,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
       {/*</div>*/}
       {/*</div>*/}
       <div
-        className="carousel relative container mx-auto flex items-center flex-wrap pb-12"
+        className="carousel relative container mx-auto flex items-center flex-wrap"
         style={{ maxWidth: '1600px' }}
       >
         <Header mobileLinks={mobileLinks} />
@@ -211,7 +211,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
   )
 }
 
-export const Head: HeadFC = () => <title>Home Page</title>
+export const Head: HeadFC = () => <title>BRIID Home</title>
 
 export const query = graphql`
   query GetLandingPageData {
