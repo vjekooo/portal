@@ -17,7 +17,7 @@ export const Header = () => {
   }, [presentMenu])
 
   return (
-    <nav className="flex flex-wrap items-center justify-between mt-0 px-6 py-3">
+    <nav className="flex flex-wrap items-center justify-between mt-0 py-6 px-6">
       <div
         className="cursor-pointer md:hidden block"
         onClick={() => setPresentMenu(!presentMenu)}

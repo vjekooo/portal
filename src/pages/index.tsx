@@ -38,7 +38,6 @@ export default function HomePage({ data }: PageProps<PageData>) {
 
   return (
     <main>
-      <Header />
       {/*<div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">*/}
       {/*<div class="order-2 md:order-3 flex items-center" id="nav-content">*/}
       {/*  <a class="inline-block no-underline hover:text-black" href="#">*/}
@@ -69,11 +68,11 @@ export default function HomePage({ data }: PageProps<PageData>) {
       {/*  </a>*/}
       {/*</div>*/}
       {/*</div>*/}
-
       <div
-        className="carousel relative container mx-auto"
+        className="carousel relative container mx-auto flex items-center flex-wrap pb-12"
         style={{ maxWidth: '1600px' }}
       >
+        <Header />
         <Hero items={heroArticles} />
       </div>
 
