@@ -37,6 +37,11 @@ export default function HomePage({ data }: PageProps<PageData>) {
       : article.image?.file?.url || '',
   }))
 
+  const mobileLinks = pages.map((page) => ({
+    title: page.title,
+    url: page.slug,
+  }))
+
   return (
     <main>
       {/*<div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">*/}
@@ -73,7 +78,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
         className="carousel relative container mx-auto flex items-center flex-wrap pb-12"
         style={{ maxWidth: '1600px' }}
       >
-        <Header />
+        <Header mobileLinks={mobileLinks} />
         <Hero items={heroArticles} />
       </div>
 

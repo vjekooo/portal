@@ -1,7 +1,14 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 
-export const Header = () => {
+interface Props {
+  mobileLinks?: {
+    title: string
+    url: string
+  }[]
+}
+
+export const Header = ({ mobileLinks }: Props) => {
   const [presentMenu, setPresentMenu] = useState(false)
 
   useEffect(() => {
@@ -17,7 +24,7 @@ export const Header = () => {
   }, [presentMenu])
 
   return (
-    <nav className="flex flex-wrap items-center justify-between mt-0 py-6 px-6">
+    <nav className="flex flex-wrap w-full items-center justify-between mt-0 py-6 px-6">
       <div
         className="cursor-pointer md:hidden block"
         onClick={() => setPresentMenu(!presentMenu)}
@@ -64,14 +71,16 @@ export const Header = () => {
                 Home
               </a>
             </li>
-            <li>
-              <a
-                href="/arhitecture"
-                className="text-gray-800 hover:text-gray-600"
-              >
-                Architecture
-              </a>
-            </li>
+            {mobileLinks?.map((link) => (
+              <li>
+                <a
+                  href={link.url}
+                  className="text-gray-800 hover:text-gray-600"
+                >
+                  {link.title}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       )}
