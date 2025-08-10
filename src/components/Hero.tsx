@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Stack } from './Stack'
 
@@ -21,12 +21,16 @@ interface Props {
   interval?: number
 }
 
-export const Hero = ({ items, interval = 4000 }: Props) => {
+export const Hero = ({ items, interval = 5000 }: Props) => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const slideInterval = setInterval(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length)
-  }, interval)
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length)
+    }, interval)
+
+    return () => clearInterval(slideInterval)
+  }, [items.length, interval])
 
   const currentItem = items[currentIndex]
 
