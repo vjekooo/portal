@@ -36,6 +36,7 @@ const PageTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
           {contentfulPage.articles?.map((article) => (
             <Card
               article={{
+                page: contentfulPage.slug,
                 title: article.title,
                 url: article.slug,
                 date: article.date,

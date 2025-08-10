@@ -3,6 +3,16 @@ import { PageProps, graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { INLINES, BLOCKS, MARKS } from '@contentful/rich-text-types'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
+import { Header } from '../components/Header'
+
+const formatDate = (date: string) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }
+  return new Date(date).toLocaleDateString('en-US', options)
+}
 
 const options = {
   renderMark: {
@@ -50,13 +60,22 @@ const ArticleTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
   const image = getImage(contentfulArticle.image)
 
   return (
-    <div>
-      <h1>{contentfulArticle.title}</h1>
-      <p>{contentfulArticle.date}</p>
+    <section className="bg-white">
+      <Header />
       {image && <GatsbyImage image={image} alt={contentfulArticle.title} />}
-      {/*@ts-ignore*/}
-      <div>{renderRichText(contentfulArticle.text, options)}</div>
-    </div>
+      <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-[70%_30%] gap-4 w-full">
+          <div className="space-y-4">
+            <p>{formatDate(contentfulArticle.date)}</p>
+            {/*@ts-ignore*/}
+            <div>{renderRichText(contentfulArticle.text, options)}</div>
+          </div>
+          <div className="bg-gray-50 p-4">
+            {/* Right sidebar content goes here */}
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -66,6 +85,9 @@ export const query = graphql`
       title
       date
       slug
+      image {
+        gatsbyImageData(layout: FULL_WIDTH)
+      }
       text {
         raw
       }

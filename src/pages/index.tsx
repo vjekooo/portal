@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql, Link, type HeadFC, type PageProps } from 'gatsby'
+import { graphql, type HeadFC, type PageProps } from 'gatsby'
 import { Hero } from '../components/Hero'
 import { Header } from '../components/Header'
 import { Card } from '../components/Card'
@@ -110,6 +110,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
                   {page?.recentArticles?.map((article: any) => (
                     <Card
                       article={{
+                        page: page.slug,
                         title: article.title,
                         url: article.slug,
                         date: article.date,

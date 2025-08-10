@@ -1,6 +1,7 @@
 import React from 'react'
 
 export interface CardArticle {
+  page: string
   title: string
   date: string
   url: string
@@ -14,7 +15,7 @@ interface Props {
 export const Card = ({ article }: Props) => {
   return (
     <div className="w-full md:w-1/3 xl:w-1/4 flex flex-col">
-      <a href="#">
+      <a href={`${article.page}/${article.url}`}>
         <img className="hover:grow hover:shadow-lg" src={article.image} />
         <div className="pt-3 flex items-center justify-between">
           {/*<p class="">Nesto</p>*/}
