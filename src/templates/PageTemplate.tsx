@@ -26,7 +26,7 @@ const PageTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
   return (
     <section className="bg-white">
       <Header />
-      <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+      <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12 px-6">
         <nav id="store" className="w-full z-30 top-0 pb-8">
           <h1 className="text-2xl font-bold uppercase">
             {contentfulPage.title}
