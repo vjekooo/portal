@@ -36,7 +36,7 @@ export const Hero = ({ items, interval = 5000 }: Props) => {
 
   return (
     <section
-      className="w-full mx-auto bg-nordic-gray-light flex p-12 md:pt-0 items-end bg-cover bg-right relative overflow-hidden"
+      className="w-full mx-auto bg-nordic-gray-light flex md:pt-0 items-end bg-cover bg-right relative overflow-hidden"
       style={{
         maxWidth: '1600px',
         height: '32rem',
@@ -56,25 +56,27 @@ export const Hero = ({ items, interval = 5000 }: Props) => {
         ></div>
       ))}
 
-      <div className="flex flex-col justify-center items-start p-6 tracking-wide bg-white opacity-70 z-10 relative">
-        <Stack>
-          <h1 className="text-black h1">{currentItem.name}</h1>
-          <HeroAction text={currentItem.title} url={currentItem.url} />
-        </Stack>
+      <div className="container mx-auto px-6 pb-6">
+        <div className="w-fit px-6 pb-6 tracking-wide bg-white z-10 relative transition-opacity duration-700 ease-in-out">
+          <Stack>
+            <h3 className="text-black">{currentItem.name}</h3>
+            <HeroAction text={currentItem.title} url={currentItem.url} />
+          </Stack>
+        </div>
       </div>
 
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-        {items.map((_, index) => (
-          <button
-            key={index}
-            className={`w-3 h-3 rounded-full ${
-              currentIndex === index ? 'bg-black' : 'bg-gray-400'
-            }`}
-            onClick={() => setCurrentIndex(index)}
-            aria-label={`Go to slide ${index + 1}`}
-          ></button>
-        ))}
-      </div>
+      {/*<div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">*/}
+      {/*  {items.map((_, index) => (*/}
+      {/*    <button*/}
+      {/*      key={index}*/}
+      {/*      className={`w-3 h-3 rounded-full ${*/}
+      {/*        currentIndex === index ? 'bg-black' : 'bg-gray-400'*/}
+      {/*      }`}*/}
+      {/*      onClick={() => setCurrentIndex(index)}*/}
+      {/*      aria-label={`Go to slide ${index + 1}`}*/}
+      {/*    ></button>*/}
+      {/*  ))}*/}
+      {/*</div>*/}
     </section>
   )
 }
