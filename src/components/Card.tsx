@@ -1,7 +1,7 @@
+import { Link } from 'gatsby'
 import React from 'react'
 
 export interface CardArticle {
-  page: string
   title: string
   date: string
   url: string
@@ -20,7 +20,7 @@ export const Card = ({ article }: Props) => {
   console.log(article)
   return (
     <div className="w-full md:w-1/3 xl:w-1/4 flex flex-col">
-      <a href={`${article.page}/${article.url}`}>
+      <Link to={article.url}>
         <img className="hover:grow hover:shadow-lg" src={article.image} />
         {/*<div className="pt-3 flex items-center justify-between">*/}
         {/*  <svg*/}
@@ -36,7 +36,7 @@ export const Card = ({ article }: Props) => {
           <p className="text-gray-600">{formatDate(article.date)}</p>
           <p className="text-gray-600">5 min</p>
         </div>
-      </a>
+      </Link>
     </div>
   )
 }

@@ -36,10 +36,10 @@ const PageTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
         <div className="grid">
           {contentfulPage.articles?.map((article) => (
             <Card
+              key={article.slug}
               article={{
-                page: contentfulPage.slug,
                 title: article.title,
-                url: article.slug,
+                url: `/${contentfulPage.slug}/${article.slug}`,
                 date: article.date,
                 image: article.image?.file?.url?.startsWith('//')
                   ? `https:${article.image.file.url}`

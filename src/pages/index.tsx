@@ -102,7 +102,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
         <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
           <div className="w-full top-0 px-6 py-1 flex flex-col gap-3">
             {pages.map((page) => (
-              <div className="w-full flex flex-col">
+              <div className="w-full flex flex-col" key={page.slug}>
                 <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-4">
                   <div className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl ">
                     <a href={page.slug}>{page.title}</a>
@@ -115,9 +115,8 @@ export default function HomePage({ data }: PageProps<PageData>) {
                   {page?.recentArticles?.map((article: any) => (
                     <Card
                       article={{
-                        page: page.slug,
                         title: article.title,
-                        url: article.slug,
+                        url: `${page.slug}/${article.slug}`,
                         date: article.date,
                         image: article.image?.file?.url?.startsWith('//')
                           ? `https:${article.image.file.url}`
