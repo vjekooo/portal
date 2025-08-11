@@ -70,7 +70,7 @@ const ArticleTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
             {/*@ts-ignore*/}
             <div>{renderRichText(contentfulArticle.text, options)}</div>
           </div>
-          <div className="bg-gray-50 p-4">
+          <div className="bg-white p-4">
             {/* Right sidebar content goes here */}
           </div>
         </div>
