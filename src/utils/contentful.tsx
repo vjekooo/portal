@@ -1,7 +1,7 @@
 import { INLINES, BLOCKS, MARKS } from '@contentful/rich-text-types'
 import React from 'react'
 
-export const createRenderOptions = (references: any[]) => ({
+export const createRenderOptions = (references: any[]): any => ({
   renderMark: {
     [MARKS.BOLD]: (text: React.ReactNode) => (
       <b className="font-bold">{text}</b>

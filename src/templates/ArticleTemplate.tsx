@@ -5,6 +5,7 @@ import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { Header } from '../components/Header'
 import { createRenderOptions } from '../utils/contentful'
 import { Footer } from '../components/Footer'
+import { Author } from '../components/Author'
 
 const formatDate = (date: string) => {
   const options: Intl.DateTimeFormatOptions = {
@@ -18,6 +19,7 @@ const formatDate = (date: string) => {
 interface PageData {
   references: any
   contentfulArticle: {
+    author: Author
     title: string
     date: string
     slug: string
@@ -46,8 +48,9 @@ const ArticleTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
       <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-[70%_30%] gap-4 w-full">
           <div className="px-6">
-            <p className="pb-3">{formatDate(contentfulArticle.date)}</p>
-            {/*@ts-ignore*/}
+            <div className="flex gap-3 items-center">
+              <p className="pb-3">{formatDate(contentfulArticle.date)}</p>
+            </div>
             <div>{renderRichText(contentfulArticle.text, options)}</div>
           </div>
           <div className="bg-white p-4">
@@ -93,6 +96,7 @@ export const query = graphql`
           }
         }
       }
+      readingTime
     }
   }
 `

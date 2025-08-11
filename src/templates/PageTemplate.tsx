@@ -74,6 +74,7 @@ export const query = graphql`
             url
           }
         }
+        readingTime
       }
     }
   }

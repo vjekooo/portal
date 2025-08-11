@@ -74,6 +74,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
                         image: article.image?.file?.url?.startsWith('//')
                           ? `https:${article.image.file.url}`
                           : article.image?.file?.url || '',
+                        readingTime: article.readingTime,
                       }}
                     />
                   ))}
@@ -161,6 +162,7 @@ export const query = graphql`
               url
             }
           }
+          readingTime
         }
       }
     }

@@ -6,6 +6,7 @@ export interface CardArticle {
   date: string
   url: string
   image: string
+  readingTime: string
 }
 
 interface Props {
@@ -41,7 +42,9 @@ export const Card = ({ article }: Props) => {
         </p>
         <div className="flex items-center justify-between mt-5">
           <p className="text-gray-600 text-sm">{formatDate(article.date)}</p>
-          <p className="text-gray-600 text-sm">5 min</p>
+          <p className="text-gray-600 text-sm">
+            {article.readingTime || '5 min'}
+          </p>
         </div>
       </Link>
     </div>
