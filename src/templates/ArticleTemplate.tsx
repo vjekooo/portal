@@ -4,6 +4,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { Header } from '../components/Header'
 import { createRenderOptions } from '../utils/contentful'
+import { Footer } from '../components/Footer'
 
 const formatDate = (date: string) => {
   const options: Intl.DateTimeFormatOptions = {
@@ -54,6 +55,7 @@ const ArticleTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </section>
   )
 }

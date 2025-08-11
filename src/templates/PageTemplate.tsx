@@ -2,6 +2,7 @@ import React from 'react'
 import { PageProps, graphql, Link, HeadFC } from 'gatsby'
 import { Card } from '../components/Card'
 import { Header } from '../components/Header'
+import { Footer } from '../components/Footer'
 
 interface PageData {
   contentfulPage: {
@@ -49,6 +50,7 @@ const PageTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
           ))}
         </div>
       </div>
+      <Footer />
     </section>
   )
 }
