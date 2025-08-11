@@ -44,8 +44,8 @@ const ArticleTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
       {image && <GatsbyImage image={image} alt={contentfulArticle.title} />}
       <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-[70%_30%] gap-4 w-full">
-          <div className="space-y-4">
-            <p>{formatDate(contentfulArticle.date)}</p>
+          <div className="px-6">
+            <p className="pb-3">{formatDate(contentfulArticle.date)}</p>
             {/*@ts-ignore*/}
             <div>{renderRichText(contentfulArticle.text, options)}</div>
           </div>
