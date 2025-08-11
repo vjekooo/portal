@@ -166,6 +166,7 @@ export const query = graphql`
         recentArticles(limit: 3) {
           slug
           title
+          date
           image {
             file {
               url
