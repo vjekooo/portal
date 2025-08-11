@@ -1,5 +1,5 @@
 import React from 'react'
-import { PageProps, graphql } from 'gatsby'
+import { HeadFC, PageProps, graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { INLINES, BLOCKS, MARKS } from '@contentful/rich-text-types'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
@@ -77,6 +77,11 @@ const ArticleTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
       </div>
     </section>
   )
+}
+
+export const Head: HeadFC<PageData> = ({ data }) => {
+  const pageTitle = data?.contentfulArticle?.title || 'Article'
+  return <title>BRIID - {pageTitle}</title>
 }
 
 export const query = graphql`
