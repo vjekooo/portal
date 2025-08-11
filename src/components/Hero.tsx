@@ -44,6 +44,7 @@ export const Hero = ({ items, interval = 5000 }: Props) => {
     >
       {items.map((item, index) => (
         <div
+          key={index}
           className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
             index === currentIndex ? 'opacity-100' : 'opacity-0'
           }`}
@@ -65,6 +66,7 @@ export const Hero = ({ items, interval = 5000 }: Props) => {
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
         {items.map((_, index) => (
           <button
+            key={index}
             className={`w-3 h-3 rounded-full ${
               currentIndex === index ? 'bg-black' : 'bg-gray-400'
             }`}

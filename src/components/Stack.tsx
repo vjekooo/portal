@@ -21,7 +21,9 @@ export const Stack = ({
   horizontal = false,
   children,
 }: Props) => (
-  <div class={`flex ${horizontal ? 'flex-row' : 'flex-col'} ${sizeMap[size]}`}>
+  <div
+    className={`flex ${horizontal ? 'flex-row' : 'flex-col'} ${sizeMap[size]}`}
+  >
     {children}
   </div>
 )

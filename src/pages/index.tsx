@@ -30,7 +30,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
 
   const heroArticles = featuredArticles.map((article) => ({
     title: article.title,
-    url: article.slug,
+    url: `/featured/${article.slug}`,
     date: article.date,
     image: article.image?.file?.url?.startsWith('//')
       ? `https:${article.image.file.url}`
@@ -44,36 +44,6 @@ export default function HomePage({ data }: PageProps<PageData>) {
 
   return (
     <main>
-      {/*<div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">*/}
-      {/*<div class="order-2 md:order-3 flex items-center" id="nav-content">*/}
-      {/*  <a class="inline-block no-underline hover:text-black" href="#">*/}
-      {/*    <svg*/}
-      {/*      class="fill-current hover:text-black"*/}
-      {/*      xmlns="http://www.w3.org/2000/svg"*/}
-      {/*      width="24"*/}
-      {/*      height="24"*/}
-      {/*      viewBox="0 0 24 24"*/}
-      {/*    >*/}
-      {/*      <circle fill="none" cx="12" cy="7" r="3" />*/}
-      {/*      <path d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243-5 5-5h4c2.757 0 5 2.243 5 5v1H21z" />*/}
-      {/*    </svg>*/}
-      {/*  </a>*/}
-
-      {/*  <a class="pl-3 inline-block no-underline hover:text-black" href="#">*/}
-      {/*    <svg*/}
-      {/*      class="fill-current hover:text-black"*/}
-      {/*      xmlns="http://www.w3.org/2000/svg"*/}
-      {/*      width="24"*/}
-      {/*      height="24"*/}
-      {/*      viewBox="0 0 24 24"*/}
-      {/*    >*/}
-      {/*      <path d="M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8 c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7z M17.341,14h-6.697L8.371,9 h11.112L17.341,14z" />*/}
-      {/*      <circle cx="10.5" cy="18.5" r="1.5" />*/}
-      {/*      <circle cx="17.5" cy="18.5" r="1.5" />*/}
-      {/*    </svg>*/}
-      {/*  </a>*/}
-      {/*</div>*/}
-      {/*</div>*/}
       <div
         className="carousel relative container mx-auto flex items-center flex-wrap"
         style={{ maxWidth: '1600px' }}
@@ -81,22 +51,6 @@ export default function HomePage({ data }: PageProps<PageData>) {
         <Header mobileLinks={mobileLinks} />
         <Hero items={heroArticles} />
       </div>
-
-      {/*single hero*/}
-
-      {/*<section class="w-full mx-auto bg-nordic-gray-light flex pt-12 md:pt-0 md:items-center bg-cover bg-right" style="max-width:1600px; height: 32rem; background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');">*/}
-
-      {/*  <div class="container mx-auto">*/}
-
-      {/*    <div class="flex flex-col w-full lg:w-1/2 justify-center items-start  px-6 tracking-wide">*/}
-      {/*      <h1 class="text-black text-2xl my-4">Stripy Zig Zag Jigsaw Pillow and Duvet Set</h1>*/}
-      {/*      <a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">products</a>*/}
-
-      {/*    </div>*/}
-
-      {/*    </div>*/}
-
-      {/*</section>*/}
 
       <section className="bg-white py-8">
         <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
@@ -108,12 +62,10 @@ export default function HomePage({ data }: PageProps<PageData>) {
                     <a href={page.slug}>{page.title}</a>
                   </div>
                 </div>
-                <div
-                  className="w-full flex-grow sm:flex sm:items-center sm:w-auto"
-                  id="store-nav-content"
-                >
+                <div className="w-full flex-wrap gap-6 sm:flex sm:items-center sm:w-auto">
                   {page?.recentArticles?.map((article: any) => (
                     <Card
+                      key={article.slug}
                       article={{
                         title: article.title,
                         url: `${page.slug}/${article.slug}`,
@@ -133,13 +85,6 @@ export default function HomePage({ data }: PageProps<PageData>) {
 
       <section className="bg-white py-8">
         <div className="container py-8 px-6 mx-auto">
-          {/*<a*/}
-          {/*  className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl mb-8"*/}
-          {/*  href="#"*/}
-          {/*>*/}
-          {/*  About*/}
-          {/*</a>*/}
-
           <p className="mb-8">
             Lorem ipsum dolor sit amet, consectetur <a href="#">random link</a>{' '}
             adipiscing elit, sed do eiusmod tempor incididunt ut labore et

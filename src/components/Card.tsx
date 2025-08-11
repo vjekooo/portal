@@ -17,7 +17,6 @@ const formatDate = (date: string) => {
 }
 
 export const Card = ({ article }: Props) => {
-  console.log(article)
   return (
     <div className="w-full md:w-1/3 xl:w-1/4 flex flex-col">
       <Link to={article.url}>
