@@ -53,7 +53,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
       </div>
 
       <section className="bg-white py-8">
-        <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
+        <div className="container mx-auto pt-4 pb-12">
           <div className="w-full top-0 px-6 py-1 flex flex-col gap-3">
             {pages.map((page) => (
               <div className="w-full flex flex-col" key={page.slug}>

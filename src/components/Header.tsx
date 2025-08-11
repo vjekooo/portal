@@ -41,7 +41,7 @@ export const Header = ({ mobileLinks }: Props) => {
         </svg>
       </div>
 
-      <div className="order-1 md:order-2">
+      <div className="order-1 md:order-2 borders-solid border-b-2 border-gray-300">
         <a
           className="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-3xl "
           href="/"
