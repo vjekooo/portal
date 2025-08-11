@@ -1,9 +1,9 @@
 import React from 'react'
 import { HeadFC, PageProps, graphql } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import { INLINES, BLOCKS, MARKS } from '@contentful/rich-text-types'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { Header } from '../components/Header'
+import { createRenderOptions } from '../utils/contentful'
 
 const formatDate = (date: string) => {
   const options: Intl.DateTimeFormatOptions = {
@@ -14,31 +14,8 @@ const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', options)
 }
 
-const options = {
-  renderMark: {
-    [MARKS.BOLD]: (text: React.ReactNode) => (
-      <b className="font-bold">{text}</b>
-    ),
-  },
-  renderNode: {
-    [INLINES.HYPERLINK]: (
-      node: { data: { uri: any } },
-      children: React.ReactNode
-    ) => {
-      const { uri } = node.data
-      return (
-        <a href={uri} className="underline">
-          {children}
-        </a>
-      )
-    },
-    [BLOCKS.HEADING_1]: (node: any, children: React.ReactNode) => {
-      return <h2>{children}</h2>
-    },
-  },
-}
-
 interface PageData {
+  references: any
   contentfulArticle: {
     title: string
     date: string
@@ -56,6 +33,8 @@ const ArticleTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
   if (!contentfulArticle) {
     return <div>Article not found</div>
   }
+
+  const options = createRenderOptions(data.references)
 
   const image = getImage(contentfulArticle.image)
 
@@ -95,6 +74,22 @@ export const query = graphql`
       }
       text {
         raw
+        references {
+          ... on ContentfulAsset {
+            contentful_id
+            __typename
+            title
+            description
+            file {
+              url
+            }
+            gatsbyImageData(
+              width: 800
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
+        }
       }
     }
   }
