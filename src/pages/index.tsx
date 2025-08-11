@@ -151,7 +151,43 @@ export default function HomePage({ data }: PageProps<PageData>) {
   )
 }
 
-export const Head: HeadFC = () => <title>BRIID Home</title>
+export const Head: HeadFC<PageData> = ({ data }) => {
+  const featuredArticles = data.featuredArticles.nodes
+
+  return (
+    <>
+      <title>BRIID - Your Premier Source for Industry News and Insights</title>
+      <meta
+        name="description"
+        content="Stay updated with the latest industry news, featured articles, and expert insights on BRIID. Discover trending topics and in-depth analysis."
+      />
+      <meta
+        name="keywords"
+        content="industry news, insights, articles, analysis, BRIID"
+      />
+
+      {/* Open Graph */}
+      <meta property="og:title" content="BRIID - Industry News and Insights" />
+      <meta
+        property="og:description"
+        content="Stay updated with the latest industry news, featured articles, and expert insights."
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://briid.magazine.com" />
+      {featuredArticles[0]?.image?.file?.url && (
+        <meta
+          property="og:image"
+          content={`https:${featuredArticles[0].image.file.url}`}
+        />
+      )}
+
+      {/* Additional Meta Tags */}
+      <meta name="robots" content="index, follow" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="canonical" href="https://briid.magazine.com" />
+    </>
+  )
+}
 
 export const query = graphql`
   query GetLandingPageData {
