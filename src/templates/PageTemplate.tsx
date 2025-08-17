@@ -3,12 +3,14 @@ import { PageProps, graphql, Link, HeadFC } from 'gatsby'
 import { Card } from '../components/Card'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
+import { GoogleAnalytics } from '../components/GoogleAnalytics'
 
 interface PageData {
   contentfulPage: {
     title: string
     slug: string
     articles: {
+      readingTime: string
       image: any
       slug: string
       title: string
@@ -26,6 +28,7 @@ const PageTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
 
   return (
     <section className="bg-white">
+      <GoogleAnalytics />
       <Header />
       <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12 px-6">
         <nav id="store" className="w-full z-30 top-0 pb-8">
@@ -45,6 +48,7 @@ const PageTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
                 image: article.image?.file?.url?.startsWith('//')
                   ? `https:${article.image.file.url}`
                   : article.image?.file?.url || '',
+                readingTime: article.readingTime || '5 min',
               }}
             />
           ))}

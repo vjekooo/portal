@@ -4,6 +4,7 @@ import { Hero } from '../components/Hero'
 import { Header } from '../components/Header'
 import { Card } from '../components/Card'
 import { Footer } from '../components/Footer'
+import { GoogleAnalytics } from '../components/GoogleAnalytics'
 
 interface PageData {
   allContentfulPage: {
@@ -16,11 +17,26 @@ interface PageData {
   }
   featuredArticles: {
     nodes: {
+      readingTime: string
       image: any
       slug: string
       title: string
       date: string
       excerpt?: string
+    }[]
+  }
+  mostReadArticles: {
+    mostRead: {
+      slug: string
+      title: string
+      date: string
+      readingTime: string
+      image: {
+        file: {
+          url: string
+        }
+      }
+      pageSlug: string
     }[]
   }
 }
@@ -45,6 +61,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
 
   return (
     <main>
+      <GoogleAnalytics />
       <div
         className="carousel relative container mx-auto flex items-center flex-wrap"
         style={{ maxWidth: '1600px' }}
@@ -52,6 +69,19 @@ export default function HomePage({ data }: PageProps<PageData>) {
         <Header mobileLinks={mobileLinks} />
         <Hero items={heroArticles} />
       </div>
+
+      <section className="bg-white py-8">
+        <div className="container mx-auto pt-4 pb-12">
+          <div className="w-full top-0 px-6 py-1">
+            <div className="w-full container mx-auto flex items-center justify-between mt-0 py-4">
+              <div className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl">
+                Najčitanije
+              </div>
+            </div>
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+          </div>
+        </div>
+      </section>
 
       <section className="bg-white py-8">
         <div className="container mx-auto pt-4 pb-12">

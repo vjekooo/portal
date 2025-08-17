@@ -6,6 +6,7 @@ import { Header } from '../components/Header'
 import { createRenderOptions } from '../utils/contentful'
 import { Footer } from '../components/Footer'
 import { Author } from '../components/Author'
+import { GoogleAnalytics } from '../components/GoogleAnalytics'
 
 const formatDate = (date: string) => {
   const options: Intl.DateTimeFormatOptions = {
@@ -43,6 +44,7 @@ const ArticleTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
 
   return (
     <section className="bg-white">
+      <GoogleAnalytics />
       <Header />
       {image && <GatsbyImage image={image} alt={contentfulArticle.title} />}
       <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
