@@ -26,17 +26,14 @@ interface PageData {
     }[]
   }
   mostReadArticles: {
-    mostRead: {
+    nodes: {
       slug: string
       title: string
+      views: number
+      image: any
       date: string
       readingTime: string
-      image: {
-        file: {
-          url: string
-        }
-      }
-      pageSlug: string
+      excerpt?: string
     }[]
   }
 }
@@ -44,6 +41,7 @@ interface PageData {
 export default function HomePage({ data }: PageProps<PageData>) {
   const pages = data.allContentfulPage.nodes
   const featuredArticles = data.featuredArticles.nodes
+  const mostReadArticles = data.mostReadArticles.nodes
 
   const heroArticles = featuredArticles.map((article) => ({
     title: article.title,
@@ -78,7 +76,22 @@ export default function HomePage({ data }: PageProps<PageData>) {
                 Najčitanije
               </div>
             </div>
-            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {mostReadArticles?.map((article: any) => (
+                <Card
+                  key={article.slug}
+                  article={{
+                    title: article.title,
+                    url: `$featured/${article.slug}`,
+                    date: article.date,
+                    image: article.image?.file?.url?.startsWith('//')
+                      ? `https:${article.image.file.url}`
+                      : article.image?.file?.url || '',
+                    readingTime: article.readingTime,
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -206,6 +219,27 @@ export const query = graphql`
           }
         }
         date
+        excerpt: text {
+          raw
+        }
+      }
+    }
+    mostReadArticles: allContentfulArticle(
+      limit: 3
+      sort: { views: DESC }
+      filter: { views: { gt: 0 } }
+    ) {
+      nodes {
+        slug
+        title
+        views
+        image {
+          file {
+            url
+          }
+        }
+        date
+        readingTime
         excerpt: text {
           raw
         }

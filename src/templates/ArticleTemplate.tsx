@@ -7,6 +7,7 @@ import { createRenderOptions } from '../utils/contentful'
 import { Footer } from '../components/Footer'
 import { Author } from '../components/Author'
 import { GoogleAnalytics } from '../components/GoogleAnalytics'
+import { useSimpleViewTracker } from '../hooks/useSimpleViewTracker'
 
 const formatDate = (date: string) => {
   const options: Intl.DateTimeFormatOptions = {
@@ -33,6 +34,8 @@ interface PageData {
 
 const ArticleTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
   const { contentfulArticle } = data
+
+  useSimpleViewTracker(contentfulArticle?.slug)
 
   if (!contentfulArticle) {
     return <div>Article not found</div>
