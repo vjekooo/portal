@@ -61,7 +61,7 @@ const PageTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
 
 export const Head: HeadFC<PageData> = ({ data }) => {
   const pageTitle = data?.contentfulPage?.title || 'Page'
-  return <title>BRIID {pageTitle}</title>
+  return <title>BRIID - {pageTitle}</title>
 }
 
 export const query = graphql`
