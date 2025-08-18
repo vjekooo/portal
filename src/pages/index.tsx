@@ -82,7 +82,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
                   key={article.slug}
                   article={{
                     title: article.title,
-                    url: `$featured/${article.slug}`,
+                    url: `featured/${article.slug}`,
                     date: article.date,
                     image: article.image?.file?.url?.startsWith('//')
                       ? `https:${article.image.file.url}`
