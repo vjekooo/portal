@@ -23,6 +23,10 @@ interface PageData {
       title: string
       date: string
       excerpt?: string
+      page: {
+        slug: string
+        title: string
+      }
     }[]
   }
   mostReadArticles: {
@@ -34,6 +38,10 @@ interface PageData {
       date: string
       readingTime: string
       excerpt?: string
+      page: {
+        slug: string
+        title: string
+      }
     }[]
   }
 }
@@ -43,9 +51,11 @@ export default function HomePage({ data }: PageProps<PageData>) {
   const featuredArticles = data.featuredArticles.nodes
   const mostReadArticles = data.mostReadArticles.nodes
 
+  console.log(mostReadArticles)
+
   const heroArticles = featuredArticles.map((article) => ({
     title: article.title,
-    url: `/featured/${article.slug}`,
+    url: `/${article.page.slug}/${article.slug}`,
     date: article.date,
     image: article.image?.file?.url?.startsWith('//')
       ? `https:${article.image.file.url}`
@@ -82,7 +92,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
                   key={article.slug}
                   article={{
                     title: article.title,
-                    url: `featured/${article.slug}`,
+                    url: `/${article.page.slug}/${article.slug}`,
                     date: article.date,
                     image: article.image?.file?.url?.startsWith('//')
                       ? `https:${article.image.file.url}`
@@ -222,6 +232,10 @@ export const query = graphql`
         excerpt: text {
           raw
         }
+        page {
+          slug
+          title
+        }
       }
     }
     mostReadArticles: allContentfulArticle(
@@ -242,6 +256,10 @@ export const query = graphql`
         readingTime
         excerpt: text {
           raw
+        }
+        page {
+          slug
+          title
         }
       }
     }

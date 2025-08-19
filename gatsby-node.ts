@@ -22,26 +22,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
     }
   `)
 
-  const featuredArticlesResult = await graphql(`
-    query GetFeaturedArticles {
-      allContentfulArticle(limit: 10, sort: { date: DESC }) {
-        nodes {
-          slug
-          title
-        }
-      }
-    }
-  `)
-
-  if (pagesResult.errors || featuredArticlesResult.errors) {
-    throw pagesResult.errors || featuredArticlesResult.errors
+  if (pagesResult.errors) {
+    throw pagesResult.errors
   }
 
   // @ts-ignore
   const pages = pagesResult.data?.allContentfulPage?.nodes || []
-  const featuredArticles =
-    // @ts-ignore
-    featuredArticlesResult.data?.allContentfulArticle?.nodes || []
 
   pages.forEach((page: any) => {
     createPage({
@@ -66,17 +52,6 @@ export const createPages: GatsbyNode['createPages'] = async ({
         })
       })
     }
-  })
-
-  featuredArticles.forEach((article: any) => {
-    createPage({
-      path: `/featured/${article.slug}`,
-      component: path.resolve('./src/templates/ArticleTemplate.tsx'),
-      context: {
-        slug: article.slug,
-        isFeatured: true,
-      },
-    })
   })
 }
 
