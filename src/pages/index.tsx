@@ -5,6 +5,7 @@ import { Header } from '../components/Header'
 import { Card } from '../components/Card'
 import { Footer } from '../components/Footer'
 import { GoogleAnalytics } from '../components/GoogleAnalytics'
+import { TextCard } from '../components/TextCard'
 
 interface PageData {
   allContentfulPage: {
@@ -12,6 +13,7 @@ interface PageData {
       recentArticles: any
       slug: string
       title: string
+      position: number
       description?: string
     }[]
   }
@@ -22,6 +24,7 @@ interface PageData {
       slug: string
       title: string
       date: string
+      author: string
       excerpt?: string
       page: {
         slug: string
@@ -37,6 +40,7 @@ interface PageData {
       image: any
       date: string
       readingTime: string
+      author: string
       excerpt?: string
       page: {
         slug: string
@@ -50,8 +54,6 @@ export default function HomePage({ data }: PageProps<PageData>) {
   const pages = data.allContentfulPage.nodes
   const featuredArticles = data.featuredArticles.nodes
   const mostReadArticles = data.mostReadArticles.nodes
-
-  console.log(mostReadArticles)
 
   const heroArticles = featuredArticles.map((article) => ({
     title: article.title,
@@ -88,15 +90,12 @@ export default function HomePage({ data }: PageProps<PageData>) {
             </div>
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {mostReadArticles?.map((article: any) => (
-                <Card
+                <TextCard
                   key={article.slug}
                   article={{
                     title: article.title,
                     url: `/${article.page.slug}/${article.slug}`,
                     date: article.date,
-                    image: article.image?.file?.url?.startsWith('//')
-                      ? `https:${article.image.file.url}`
-                      : article.image?.file?.url || '',
                     readingTime: article.readingTime,
                   }}
                 />
@@ -202,10 +201,11 @@ export const Head: HeadFC<PageData> = ({ data }) => {
 
 export const query = graphql`
   query GetLandingPageData {
-    allContentfulPage {
+    allContentfulPage(sort: { position: ASC }) {
       nodes {
         slug
         title
+        position
         recentArticles(limit: 3) {
           slug
           title
