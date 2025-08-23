@@ -81,7 +81,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
       </div>
 
       <section className="bg-white py-8">
-        <div className="container mx-auto pt-4 pb-12">
+        <div className="container mx-auto pt-4">
           <div className="w-full top-0 px-6 py-1">
             <div className="w-full container mx-auto flex items-center justify-between mt-0 py-4">
               <div className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl">
@@ -96,6 +96,9 @@ export default function HomePage({ data }: PageProps<PageData>) {
                     title: article.title,
                     url: `/${article.page.slug}/${article.slug}`,
                     date: article.date,
+                    image: article.image?.file?.url?.startsWith('//')
+                      ? `https:${article.image.file.url}`
+                      : article.image?.file?.url || '',
                     readingTime: article.readingTime,
                   }}
                 />
