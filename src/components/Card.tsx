@@ -49,7 +49,7 @@ export const Card = ({ article }: Props) => {
         <div className="flex items-center justify-between mt-5">
           <p className="text-gray-600 text-sm">{formatDate(article.date)}</p>
           <p className="text-gray-600 text-sm">
-            {article.readingTime || '5 min'}
+            {`${article.readingTime} min` || '5 min'}
           </p>
         </div>
       </Link>
