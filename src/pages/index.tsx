@@ -116,7 +116,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
             {pages.map((page) => (
               <div className="w-full flex flex-col" key={page.slug}>
                 <div className="w-full container mx-auto flex items-center justify-between mt-0 py-4">
-                  <div className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl ">
+                  <div className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-3xl">
                     <a href={page.slug}>{page.title}</a>
                   </div>
                 </div>
