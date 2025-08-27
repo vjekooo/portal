@@ -82,11 +82,25 @@ export default function HomePage({ data }: PageProps<PageData>) {
         </div>
       </div>
 
-      <section className="bg-white py-8">
+      <section className="bg-white hidden pt-8 md:block">
         <div className="container mx-auto pt-4">
-          <div className="w-2/3 top-0 px-6 py-1">
+          <div className="w-full top-0 px-6 py-1 flex gap-3">
+            {pages.map((page, index) => (
+              <div className="" key={page.slug}>
+                <a href={page.slug} className="text-3xl">
+                  {page.title} {index === pages.length - 1 ? '' : '/'}
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-4">
+        <div className="container mx-auto pt-4">
+          <div className="md:w-2/3 top-0 px-6 py-1">
             <div className="w-full container mx-auto flex items-center justify-between mt-0 py-4">
-              <div className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl">
+              <div className="tracking-wide no-underline hover:no-underline text-gray-800 text-xl">
                 Najčitanije
               </div>
             </div>
@@ -116,7 +130,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
             {pages.map((page) => (
               <div className="w-full flex flex-col" key={page.slug}>
                 <div className="w-full container mx-auto flex items-center justify-between mt-0 py-4">
-                  <div className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-3xl">
+                  <div className="tracking-wide no-underline hover:no-underline text-gray-800 text-3xl">
                     <a href={page.slug}>{page.title}</a>
                   </div>
                 </div>
