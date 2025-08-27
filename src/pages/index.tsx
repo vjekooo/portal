@@ -77,12 +77,14 @@ export default function HomePage({ data }: PageProps<PageData>) {
         style={{ maxWidth: '1600px' }}
       >
         <Header mobileLinks={mobileLinks} />
-        <Hero items={heroArticles} />
+        <div className="w-full">
+          <Hero items={heroArticles} />
+        </div>
       </div>
 
       <section className="bg-white py-8">
         <div className="container mx-auto pt-4">
-          <div className="w-full top-0 px-6 py-1">
+          <div className="w-2/3 top-0 px-6 py-1">
             <div className="w-full container mx-auto flex items-center justify-between mt-0 py-4">
               <div className="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl">
                 Najčitanije
@@ -108,7 +110,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
         </div>
       </section>
 
-      <section className="bg-white py-8">
+      <section className="bg-white">
         <div className="container mx-auto pt-4 pb-12">
           <div className="w-full top-0 px-6 py-1 flex flex-col gap-3">
             {pages.map((page) => (

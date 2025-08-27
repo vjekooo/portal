@@ -38,7 +38,6 @@ export const Hero = ({ items, interval = 5000 }: Props) => {
     <section
       className="w-full mx-auto bg-nordic-gray-light flex md:pt-0 items-end bg-cover bg-right relative overflow-hidden"
       style={{
-        maxWidth: '1600px',
         height: '32rem',
       }}
     >
@@ -64,19 +63,6 @@ export const Hero = ({ items, interval = 5000 }: Props) => {
           </Stack>
         </div>
       </div>
-
-      {/*<div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">*/}
-      {/*  {items.map((_, index) => (*/}
-      {/*    <button*/}
-      {/*      key={index}*/}
-      {/*      className={`w-3 h-3 rounded-full ${*/}
-      {/*        currentIndex === index ? 'bg-black' : 'bg-gray-400'*/}
-      {/*      }`}*/}
-      {/*      onClick={() => setCurrentIndex(index)}*/}
-      {/*      aria-label={`Go to slide ${index + 1}`}*/}
-      {/*    ></button>*/}
-      {/*  ))}*/}
-      {/*</div>*/}
     </section>
   )
 }

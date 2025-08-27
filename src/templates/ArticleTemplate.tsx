@@ -49,10 +49,14 @@ const ArticleTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
     <section className="bg-white">
       <GoogleAnalytics />
       <Header />
-      {image && <GatsbyImage image={image} alt={contentfulArticle.title} />}
       <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-[70%_30%] gap-4 w-full">
-          <div className="px-6">
+          <div className="px-6 flex flex-col gap-4">
+            {image && (
+              <div className="w-full">
+                <GatsbyImage image={image} alt={contentfulArticle.title} />
+              </div>
+            )}
             <div className="flex gap-3 items-center">
               <p className="pb-3">{formatDate(contentfulArticle.date)}</p>
             </div>

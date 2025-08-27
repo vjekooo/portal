@@ -25,17 +25,17 @@ const formatDate = (date: string) => {
 
 export const TextCard = ({ article }: Props) => {
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full flex flex-col bg-gray-50 p-4 rounded-lg">
       <Link to={article.url} className="flex gap-3">
-        <img src={article.image} className="hover:grow hover:shadow-lg w-1/2" />
-        <div className="flex flex-col gap-2 w-1/2">
+        {/*<img src={a“rticle.image} className="hover:grow hover:shadow-lg w-1/2" />*/}
+        <div className="flex flex-col gap-2">
           <p className="pt-1 text-gray-900 font-semibold text-sm min-h-[52px]">
             {article.title}
           </p>
-          <div className="flex items-center justify-between mt-3">
+          <div className="flex flex-col">
             <p className="text-gray-600 text-sm">{formatDate(article.date)}</p>
             <p className="text-gray-600 text-sm">
-              {article.readingTime || '5 min'}
+              {`${article.readingTime} min` || '5 min'}
             </p>
           </div>
         </div>
