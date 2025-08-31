@@ -44,5 +44,6 @@ export const Footer = () => (
         </div>
       </div>
     </div>
+    <div className="flex justify-center text-sm hidden">Made by vjekooo</div>
   </footer>
 )

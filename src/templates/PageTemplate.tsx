@@ -4,6 +4,7 @@ import { Card } from '../components/Card'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { GoogleAnalytics } from '../components/GoogleAnalytics'
+import { Hero } from '../components/Hero'
 
 interface PageData {
   allContentfulPage: {
@@ -24,6 +25,9 @@ interface PageData {
       slug: string
       title: string
       date: string
+      page: {
+        slug: string
+      }
     }[]
   }
 }
@@ -38,13 +42,27 @@ const PageTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
     return <div>Page not found</div>
   }
 
+  const articles = contentfulPage.articles
+
+  const heroArticles = articles?.map((article) => ({
+    title: article.title,
+    url: `/${article.page.slug}/${article.slug}`,
+    date: article.date,
+    image: article.image?.file?.url?.startsWith('//')
+      ? `https:${article.image.file.url}`
+      : article.image?.file?.url || '',
+  }))
+
   return (
     <section className="bg-white">
       <GoogleAnalytics />
       <Header />
+      <div className="w-full">
+        <Hero items={heroArticles} />
+      </div>
       <div className="container mx-auto flex items-center flex-wrap pt-4 pb-12 px-6">
         <div className="hidden md:block">
-          <nav className="w-full flex gap-2 top-0 pb-8 ">
+          <nav className="w-full flex gap-2 py-12 top-0">
             {pages.map((page, index) => {
               const cleanSlug = `/${page.slug.replace(/^\/+/, '')}`
 
@@ -52,8 +70,8 @@ const PageTemplate: React.FC<PageProps<PageData>> = ({ data }) => {
                 <div className="" key={page.slug}>
                   <a
                     href={cleanSlug}
-                    className={`text-3xl ${
-                      currentSlug === page.slug ? 'text-black' : 'text-gray-500'
+                    className={`text-3xl uppercase ${
+                      currentSlug === page.slug ? 'text-black' : 'text-gray-300'
                     }`}
                   >
                     {page.title} {index === pages.length - 1 ? '' : '/'}
@@ -100,6 +118,10 @@ export const query = graphql`
         slug
         title
         date
+        page {
+          slug
+          title
+        }
         image {
           file {
             url
