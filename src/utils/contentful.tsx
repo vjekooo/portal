@@ -20,7 +20,7 @@ export const createRenderOptions = (references: any[]): any => ({
       )
     },
     [BLOCKS.HEADING_1]: (node: any, children: React.ReactNode) => {
-      return <h1 className="text-5xl font-bold mb-6">{children}</h1>
+      return <h1 className="h1 uppercase mb-6">{children}</h1>
     },
     [BLOCKS.PARAGRAPH]: (node: any, children: React.ReactNode) => {
       return <p className="text-md mb-4 leading-relaxed">{children}</p>
