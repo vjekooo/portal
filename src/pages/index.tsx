@@ -87,7 +87,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
           <div className="w-full top-0 px-6 py-12 flex gap-3">
             {pages.map((page, index) => (
               <div className="" key={page.slug}>
-                <a href={page.slug} className="text-3xl uppercase">
+                <a href={page.slug} className="text-3xl uppercase h5">
                   {page.title} {index === pages.length - 1 ? '' : '/'}
                 </a>
               </div>
@@ -100,7 +100,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
         <div className="container mx-auto pt-4">
           <div className="md:w-2/3 top-0 px-6 py-1">
             <div className="w-full container mx-auto flex items-center justify-between mt-0 py-4">
-              <div className="tracking-wide no-underline hover:no-underline text-gray-800 text-xl uppercase">
+              <div className="tracking-wide no-underline hover:no-underline text-gray-800 text-xl uppercase h5">
                 Najčitanije
               </div>
             </div>
@@ -130,7 +130,7 @@ export default function HomePage({ data }: PageProps<PageData>) {
             {pages.map((page) => (
               <div className="w-full flex flex-col" key={page.slug}>
                 <div className="w-full container mx-auto flex items-center justify-between mt-0 py-4">
-                  <div className="tracking-wide no-underline hover:no-underline text-gray-800 text-3xl uppercase">
+                  <div className="tracking-wide no-underline hover:no-underline text-gray-800 text-3xl h5 uppercase">
                     <a href={page.slug}>{page.title}</a>
                   </div>
                 </div>
@@ -186,12 +186,12 @@ export const Head: HeadFC<PageData> = ({ data }) => {
   return (
     <>
       <title>BRIID - Your Premier Source for Industry News and Insights</title>
-      {/*<link rel="preconnect" href="https://fonts.googleapis.com" />*/}
-      {/*<link rel="preconnect" href="https://fonts.gstatic.com" />*/}
-      {/*<link*/}
-      {/*  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gilda+Display&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"*/}
-      {/*  rel="stylesheet"*/}
-      {/*/>*/}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Abel&family=Bebas+Neue&display=swap"
+        rel="stylesheet"
+      />
       <meta
         name="description"
         content="Stay updated with the latest industry news, featured articles, and expert insights on BRIID. Discover trending topics and in-depth analysis."

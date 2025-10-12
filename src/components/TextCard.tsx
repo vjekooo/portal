@@ -29,7 +29,7 @@ export const TextCard = ({ article }: Props) => {
       <Link to={article.url} className="flex gap-3">
         {/*<img src={a“rticle.image} className="hover:grow hover:shadow-lg w-1/2" />*/}
         <div className="flex flex-col gap-2">
-          <p className="pt-1 text-gray-900 font-semibold text-sm min-h-[52px]">
+          <p className="pt-1 text-gray-900 h5 text-sm min-h-[52px]">
             {article.title}
           </p>
           <div className="flex flex-col">

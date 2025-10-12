@@ -38,9 +38,7 @@ export const Card = ({ article }: Props) => {
         {/*  </svg>*/}
         {/*</div>*/}
         <div className="flex flex-col">
-          <p className="pt-1 text-gray-900 font-bold min-h-[52px]">
-            {article.title}
-          </p>
+          <p className="pt-1 text-gray-900 h5 min-h-[52px]">{article.title}</p>
           <p className="pt-1 text-gray-800 line-clamp-2 text-sm">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua

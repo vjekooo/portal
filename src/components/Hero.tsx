@@ -9,7 +9,7 @@ interface HeroActionProps {
 
 const HeroAction = ({ text, url }: HeroActionProps) => (
   <a
-    className="text-xl inline-block underline leading-relaxed hover:text-black hover:border-black"
+    className="text-xl inline-block underline leading-relaxed hover:text-black hover:border-black h5"
     href={`${url}`}
   >
     {text}
@@ -56,7 +56,7 @@ export const Hero = ({ items, interval = 5000 }: Props) => {
       ))}
 
       <div className="container mx-auto px-6 pb-6">
-        <div className="w-fit px-6 pb-6 tracking-wide bg-white z-10 relative transition-opacity duration-700 ease-in-out">
+        <div className="w-fit px-6 pb-4 tracking-wide bg-white z-10 relative transition-opacity duration-700 ease-in-out">
           <Stack>
             <h3 className="text-black">{currentItem.name}</h3>
             <HeroAction text={currentItem.title} url={currentItem.url} />
