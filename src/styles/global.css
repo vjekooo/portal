@@ -35,9 +35,15 @@
   src: url('../fonts/BebasNeue/BebasNeue Bold.otf') format('opentype');
 }
 
-
 @utility h1 {
   font-size: 4rem;
   font-weight: 700;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'BebasNeue', sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: 'BebasNeue', sans-serif;
+    letter-spacing: 1px;
+  }
 }
